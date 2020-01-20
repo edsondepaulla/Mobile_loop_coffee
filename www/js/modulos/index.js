@@ -4,6 +4,10 @@ app.controller('Index', function($scope, $rootScope, ReturnData) {
     $rootScope.NO_WHATSAPP = false;
     $scope.PRODUTOS = ReturnData.PRODUTOS;
 
+    setTimeout(function(){
+        $rootScope.location('#!/');
+    }, 60000);
+
     $scope.atualizar = function () {
         Factory.ajax(
             {
