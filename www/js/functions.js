@@ -191,12 +191,6 @@ var Factory = {
                                         localStorage.setItem("PHPSESSID", response.data.Login.PHPSESSID);
                                 }
 
-                                // Versao nova
-                                if(response.data.VERSAO_NOVA && params.action != 'options/atualizarapp') {
-                                    Page.start();
-                                    window.location = '#!/atualizar-app';
-                                }
-
                                 if (successCallback)
                                     eval(successCallback)(response.data);
 

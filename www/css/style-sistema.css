@@ -4386,9 +4386,8 @@ body[controller="Index"] .scrollable-content #Produtos ul li > div.info label .v
 
 body[controller="Index"] .scrollable ul li{
   border-bottom: 1px solid rgba(11, 99, 64, 0.1);
-  padding: 10px 0;
+  padding: 5px 10px;
   position: relative;
-  min-height: 112px;
 }
 
 body[controller="Index"] .scrollable ul li:first-child{

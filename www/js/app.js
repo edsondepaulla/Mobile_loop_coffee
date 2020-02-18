@@ -34,7 +34,7 @@ app.config(function($routeProvider, $mdThemingProvider, $mdDateLocaleProvider, $
                 ReturnData: function ($route) {
                     return Factory.ajax(
                         {
-                            action: 'pedidos/lst'
+                            action: 'loopcoffee/lst'
                         }
                     );
                 }

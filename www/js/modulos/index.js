@@ -1,31 +1,26 @@
+var timeout = null;
 app.controller('Index', function($scope, $rootScope, ReturnData) {
     QRScannerConf.destroy();
     $rootScope.REDIRECT = '';
     $rootScope.NO_WHATSAPP = false;
     $scope.PRODUTOS = ReturnData.PRODUTOS;
 
-    setTimeout(function(){
+    clearInterval(timeout);
+    timeout = setInterval(function(){
         $rootScope.location('#!/');
-    }, 60000);
+    }, 15000);
 
     $scope.atualizar = function () {
-        Factory.ajax(
-            {
-                action: 'pedidos/atualizar'
-            },
-            function (data) {
-                $rootScope.location('#!/');
-            }
-        );
+        $rootScope.location('#!/');
     };
 
-    $scope.check = function (PROD) {
+    $scope.check = function (REQUEST) {
         if(confirm('Confirmar entrega?')){
             Factory.ajax(
                 {
-                    action: 'pedidos/check',
+                    action: 'loopcoffee/check',
                     data: {
-                        ID: PROD.ID_PEDIDO
+                        REQUEST: REQUEST
                     }
                 },
                 function (data) {

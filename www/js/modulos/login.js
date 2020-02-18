@@ -40,6 +40,7 @@ var Login = {
     },
     setTimeoutLoginGet: null,
     get: function (redirect) {
+        return;
         clearTimeout(this.setTimeoutLoginGet);
         this.setTimeoutLoginGet = setTimeout(function () {
             return Factory.ajax(

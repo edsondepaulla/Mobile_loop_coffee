@@ -1,18 +1,26 @@
 <md-content class="scrollable-content" scroll flex md-scroll-y>
     <a id="btn-atualizar" ng-click="atualizar()">Atualizar vendas</a>
 
-    <ul ng-if="PRODUTOS">
-        <li ng-repeat="PROD in PRODUTOS">
-            <div class="info">
-                <h4>{{PROD.NOME}} <i ng-if="PROD.CONTEUDO != NULL">({{PROD.CONTEUDO}})</i></h4>
-                <label><span class="v">{{PROD.PRECO_FORMAT}}</span></label>
-                <p ng-if="PROD.DESCRICAO != NULL">{{PROD.DESCRICAO}}</p>
-                <br><a class="a-btn" ng-click="check(PROD)"><i class="mdi mdi-navigation-check"></i> Entregue</a>
-            </div>
-            <div class="img"><img src="{{PROD.IMAGEM}}" onerror="onErrorProd(this)"></div>
+    <div style="border: 1px dashed #444; margin-bottom: 15px" ng-repeat="ITEM in PRODUTOS">
+        <div style="margin-left: 10px;margin-top: 5px">
+            Pedido: <b>{{ITEM.REQUEST}}</b> - {{ITEM.DATAHORA}}
+        </div>
+        <div>
+            <b ng-if="ITEM.ITENS.length>1" style="margin-top: 5px; margin-left: 10px; font-size: 18px;float: left;display: block">{{ITEM.TOTAL}}</b>
+            <a style="margin-right: 10px; float: right" class="a-btn" ng-click="check(ITEM.REQUEST)"><i class="mdi mdi-navigation-check"></i> Entregue</a>
             <div class="clearBoth"></div>
-        </li>
-    </ul>
+        </div>
+        <ul>
+            <li ng-repeat="PROD in ITEM.ITENS">
+                <div class="info">
+                    <h4>{{PROD.NOME}} <i ng-if="PROD.CONTEUDO != NULL">({{PROD.CONTEUDO}})</i></h4>
+                    <label><span class="v">{{PROD.PRECO_FORMAT}}</span></label>
+                    <p ng-if="PROD.DESCRICAO != NULL">{{PROD.DESCRICAO}}</p>
+                </div>
+                <div class="clearBoth"></div>
+            </li>
+        </ul>
+    </div>
 
-    <h4 id="nenhumRegLocalizado" ng-if="!PRODUTOS.length">Nenhum registro localizado!</h4>
+    <h4 id="nenhumRegLocalizado" ng-if="!PRODUTOS">Nenhum registro localizado!</h4>
 </md-content>
