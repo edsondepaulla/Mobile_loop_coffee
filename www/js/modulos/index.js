@@ -1,12 +1,12 @@
-var timeout = null;
+var timeoutVendas = null;
 app.controller('Index', function($scope, $rootScope, ReturnData) {
     QRScannerConf.destroy();
     $rootScope.REDIRECT = '';
     $rootScope.NO_WHATSAPP = false;
     $scope.PRODUTOS = ReturnData.PRODUTOS;
 
-    clearInterval(timeout);
-    timeout = setInterval(function(){
+    clearInterval(timeoutVendas);
+    timeoutVendas = setInterval(function(){
         $rootScope.location('#!/');
     }, 15000);
 

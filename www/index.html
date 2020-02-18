@@ -88,7 +88,7 @@
       <img ng-click="location('#!/')" src="img/logo.png" border="0">
     </div>
 
-    <i mn-touch swipe-right="swipeRight()" ng-if="controller == 'Index' && false" class="btn_maps mdi mdi-action-view-headline" ng-click="menuOpen()"></i>
+    <i mn-touch swipe-right="swipeRight()" ng-if="controller == 'Index'" class="btn_maps mdi mdi-action-view-headline" ng-click="menuOpen()"></i>
 
     <div id="carregando">
       <img ng-click="location('#!/')" src="img/logo.png" border="0" width="200" role="button"><br><br>
@@ -110,7 +110,7 @@
 
   <div id="menuLeft" class="Menuleft " mn-touch swipe-left="swipeLeft()" swipe-right="swipeRight()">
     <div id="contentLeft" ui-prevent-touchmove-defaults>
-      <div id="userLeft">
+      <div id="userLeft" ng-if="false">
         <img ng-if="!usuario.ID" border="0" src="" ng-click="location('#!/conecte-se')" onerror="onErrorUser(this)">
         <img ng-if="usuario.ID" border="0" src="" ng-click="location('#!/cadastro')" onerror="onErrorUser(this)">
         <div ng-if="!usuario.ID" ng-click="location('#!/conecte-se')">
@@ -128,12 +128,6 @@
             <i ng-if="menu.icon" class="mdi {{menu.icon}}"></i>
             <img ng-if="menu.img" src="img/{{menu.img}}" border="0">
             {{menu.titulo}}
-          </a>
-        </li>
-        <li ng-if="usuario.ID">
-          <a ng-click="logout()">
-            <i class="mdi mdi-content-clear"></i>
-            Sair
           </a>
         </li>
       </ul>

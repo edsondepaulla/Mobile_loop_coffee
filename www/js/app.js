@@ -104,6 +104,35 @@ app.config(function($routeProvider, $mdThemingProvider, $mdDateLocaleProvider, $
                 }
             }
         })
+        .when("/relatorio", {
+            templateUrl: "view/pages/relatorio.html",
+            controller: 'Relatorio',
+            resolve: {
+                ReturnData: function () {
+                    return Factory.ajax(
+                        {
+                            action: 'loopcoffee/relatorio'
+                        }
+                    );
+                }
+            }
+        })
+        .when("/relatorio/:DATA", {
+            templateUrl: "view/pages/relatorio.html",
+            controller: 'Relatorio',
+            resolve: {
+                ReturnData: function ($route) {
+                    return Factory.ajax(
+                        {
+                            action: 'loopcoffee/relatorio',
+                            data: {
+                                DATA: $route.current.params.DATA
+                            }
+                        }
+                    );
+                }
+            }
+        })
         .when("/token/:TOKEN", {
             templateUrl: "view/pages/token.html",
             controller: 'Token',
@@ -316,6 +345,17 @@ app.controller('Faq', function($rootScope, $scope, $routeParams, ReturnData) {
     $rootScope.REDIRECT = '';
 });
 
+app.controller('Relatorio', function($scope, $rootScope, ReturnData) {
+    $rootScope.border_top = 1;
+    $rootScope.Titulo = "Relatório";
+    QRScannerConf.destroy();
+    $rootScope.REDIRECT = '';
+    $scope.PRODUTOS = ReturnData.PRODUTOS;
+    $scope.TOTAL = ReturnData.TOTAL;
+    $scope.DATA = ReturnData.DATA;
+    clearInterval(timeoutVendas);
+});
+
 app.controller('Token', function($rootScope) {
     $rootScope.border_top = 1;
     $rootScope.Titulo = "Token";
@@ -405,12 +445,10 @@ app.controller('Main', function($rootScope, $scope, $http, $routeParams, $route,
     };
 
     $rootScope.swipeLeft = function () {
-        return;
         $rootScope.menuClose();
     };
 
     $rootScope.swipeRight = function () {
-        return;
         if (!$('[ng-controller="Modal"]').is(':visible'))
             $rootScope.menuOpen();
     };
@@ -453,33 +491,15 @@ app.controller('Main', function($rootScope, $scope, $http, $routeParams, $route,
     // Menu
     $rootScope.MenuLeft = [
         {
-            titulo: 'Início',
+            titulo: 'Vendas',
             url: '#!/',
             icon: 'mdi-action-home',
             logado: 1
         },
         {
-            titulo: 'Condomínios',
-            url: '#!/maquinas',
+            titulo: 'Relatório',
+            url: '#!/relatorio',
             icon: 'mdi-social-domain',
-            logado: 1
-        },
-        {
-            titulo: 'Vouchers',
-            url: '#!/voucher',
-            icon: 'mdi-action-loyalty',
-            logado: 0
-        },
-        {
-            titulo: 'Histórico de transações',
-            url: '#!/historico-transacoes',
-            icon: 'mdi-action-history',
-            logado: 0
-        },
-        {
-            titulo: 'Suporte',
-            url: '#!/suporte',
-            icon: 'mdi-communication-live-help',
             logado: 1
         }
     ];

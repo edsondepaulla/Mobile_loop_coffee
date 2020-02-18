@@ -1,0 +1,16 @@
+<md-content class="scrollable-content" scroll flex md-scroll-y>
+    <br>Data: <input type="date" id="DATA" value="{{DATA}}"> <button onclick="if($('#DATA').val()){window.location.href = '#!/relatorio/'+$('#DATA').val();}">OK</button>
+    <br><br>
+    <ul ng-if="PRODUTOS.length">
+        <li style="margin-top: 5px; border-bottom: 1px solid #CCC" ng-repeat="PROD in PRODUTOS">
+            <b style="width: 20px; display: inline-block">{{PROD.QTDE}}</b>{{PROD.NOME}} <b style="float: right">{{PROD.VALOR}}</b>
+            <div class="clearBoth"></div>
+        </li>
+        <li style="margin-top: 5px;">
+            <b style="float: right">{{TOTAL}}</b>
+            <div class="clearBoth"></div>
+        </li>
+    </ul>
+
+    <h4 id="nenhumRegLocalizado" ng-if="!PRODUTOS.length">Nenhum registro localizado!</h4>
+</md-content>
